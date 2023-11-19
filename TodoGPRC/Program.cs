@@ -1,12 +1,13 @@
+global using TodoGPRC.Data;
+global using TodoGPRC.Models;
+global using Microsoft.EntityFrameworkCore;
 using TodoGPRC.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Additional configuration is required to successfully run gRPC on macOS.
-// For instructions on how to configure Kestrel and gRPC clients on macOS, visit https://go.microsoft.com/fwlink/?linkid=2099682
-
 // Add services to the container.
 builder.Services.AddGrpc();
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite("Data Source=Todo.db"));
 
 var app = builder.Build();
 
