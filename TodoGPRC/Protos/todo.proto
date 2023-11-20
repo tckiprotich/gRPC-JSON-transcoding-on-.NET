@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+option csharp_namespace = "TodoGPRC";
+
+package todoit;
+
+
+service ToDoIt {
+    // Create a new todo
+    rpc CreateTodo (CreateTodoRequest) returns (CreateTodoResponse);
+    // read all 
+    rpc ReadTodo (ReadTodoRequest) returns (ReadTodoResponse);
+    // Update a todo
+    rpc UpdateTodo (UpdateTodoRequest) returns (UpdateTodoResponse);
+    // Delete a todo
+    rpc DeleteTodo (DeleteTodoRequest) returns (DeleteTodoResponse);
+}
+
+message CreateTodoRequest {
+    string Title = 1;
+    string Description = 2;
+}
+
+message CreateTodoResponse {
+    int32 Id = 1;
+    string Title = 2;
+    string Description = 3;
+}
+
+// READ: ReadTodoRequest
+message ReadTodosRequest {
+    int32 Id = 1;
+}
+
+message ReadTodosResponse {
+    int32 Id = 1;
+    string Title = 2;
+    string Description = 3;
+    bool IsComplete = 4;
+}
+
+// READ All
+message ReadTodoRequest {}
+
+message ReadTodoResponse {
+    repeated ReadTodosResponse Todos = 1;
+}
+
+// UPDATE: UpdateTodoRequest
+message UpdateTodoRequest {
+    int32 Id = 1;
+    string Title = 2;
+    string Description = 3;
+    bool IsComplete = 4;
+}
+
+message UpdateTodoResponse {
+    int32 Id = 1;
+    string Title = 2;
+    string Description = 3;
+    bool IsComplete = 4;
+}
+
+// DELETE: DeleteTodoRequest
+message DeleteTodoRequest {
+    int32 Id = 1;
+}
+
+message DeleteTodoResponse {
+    int32 Id = 1;
+    string Title = 2;
+    string Description = 3;
+    bool IsComplete = 4;
+}
